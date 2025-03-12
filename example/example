@@ -1,0 +1,31 @@
+#include <Arduino.h>
+#include <inttypes.h>
+#include <MotorControl_ML.h>
+
+// Motors's pin
+#define FinRightPIN 32
+#define RinRightPIN 14
+#define FinLeftPIN 33
+#define RinLeftPIN 15
+
+
+void setup()
+{
+  unsigned long t0 = micros();
+
+  Serial.begin(921600); // init serial com
+  Serial.flush();
+
+  Motors.init(FinLeftPIN, RinLeftPIN, FinRightPIN, RinRightPIN);  
+
+}
+
+void loop()
+{
+  unsigned long t0 = micros();
+  Motors.setSpeed(0, 255); //high signal for right motor
+  delay(500);
+  Motors.setSpeed(255, 0); //high signal for left motor
+  delay(500);
+
+}
